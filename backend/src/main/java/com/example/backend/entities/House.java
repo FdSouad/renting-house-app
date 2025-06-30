@@ -3,12 +3,14 @@ package com.example.backend.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
 public class House {
 
+    @Setter
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,5 +29,44 @@ public class House {
 
     private boolean available = true;
 
+    public @NotBlank(message = "Title is mandatory") String getTitle() {
+        return title;
+    }
+
+    public void setTitle(@NotBlank(message = "Title is mandatory") String title) {
+        this.title = title;
+    }
+
+    public @NotNull(message = "Price is mandatory") @Positive(message = "Price must be positive") Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(@NotNull(message = "Price is mandatory") @Positive(message = "Price must be positive") Double price) {
+        this.price = price;
+    }
+
+    public @NotBlank(message = "Location is mandatory") String getLocation() {
+        return location;
+    }
+
+    public void setLocation(@NotBlank(message = "Location is mandatory") String location) {
+        this.location = location;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
 }
 
